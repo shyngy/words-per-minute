@@ -1,28 +1,72 @@
-import produce from "immer";
+
 import { constants } from "../constants";
 
 const initalState = {
-  keys: []
+  apiWords: [],
+  userTypedLetter: '',
+  userLetters: '',
+  wordShift: 0,
+  letters: '',
+  correctWordBool: [],
+
 }
 
 
-export const keyboard = produce((draft, action) => {
-  switch (action.type) {
-    case constants.ADD_KEY:
-      draft.keys = action.payload;
+export const keyboard = (state = initalState, action) => {
 
-  
-      
-      draft.keys.forEach((e, i)=>{
-        if(e === 'Backspace'){
-          draft.keys.splice(--i)
+  switch (action.type) {
+    case "ADD_LETTER":
+      return {
+        ...state,
+        userTypedLetter: action.payload
+      }
+
+    case constants.KEYBOARD_EVENT:
+      let nextWord = 0
+      const bool = []
+      const letter = state.apiWords[state.wordShift]?.split('') 
+      console.log(nextWord);
+      const splitedWord = state.userTypedLetter.split('')
+      if(splitedWord.join() === letter?.join()){
+        console.log('hello');
+        return{
+          ...state,
+          wordShift: state.wordShift + 1,
+          userTypedLetter: ''
         }
-      })
-      break;
+        
+      }
+      console.log(state.wordShift);
+      console.log(splitedWord, letter);
+      for (let index = 0; index < state.userTypedLetter.length; index++) {
+        console.log(state.userTypedLetter[index],letter[index]);
+        if(state.userTypedLetter[index] === letter[index]){
+          bool[index] = true
+        }else{
+          bool[index] = false
+        }
+        
+      }
+      
+    
+      return {
+        ...state,
+        // userTypedLetter: action.payload
+      }
+      
+    case constants.SET_API_WORDS:
+      
+      return {
+        ...state,
+        apiWords: action.payload
+      }
+      
+     
     default:
-      break;
+      return state
+      
   }
-}, initalState)
+}
 
 
 // export const keyboard = (state = initalState, action) => {
