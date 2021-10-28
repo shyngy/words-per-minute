@@ -1,87 +1,92 @@
-
-import { constants } from "../constants";
+import { constants } from '../constants'
 
 const initalState = {
-  apiWords: [],
+  randomWords: [],
   userTypedLetter: '',
-  userLetters: '',
+
   wordShift: 0,
-  letters: '',
+  allWords: [],
   correctWordBool: [],
 
+  comparisonWords: [],
 }
 
-
 export const keyboard = (state = initalState, action) => {
-
+  console.log(state.comparisonWords)
   switch (action.type) {
-    case "ADD_LETTER":
+    case 'ADD_LETTER':
       return {
         ...state,
-        userTypedLetter: action.payload
+        userTypedLetter: action.payload,
       }
 
     case constants.KEYBOARD_EVENT:
-      let nextWord = 0
-      const bool = []
-      const letter = state.apiWords[state.wordShift]?.split('') 
-      console.log(nextWord);
-      const splitedWord = state.userTypedLetter.split('')
-      if(splitedWord.join() === letter?.join()){
-        console.log('hello');
-        return{
+      const wordsInBool = []
+      const randomLetter = state.randomWords[state.wordShift]?.split('')
+
+      const userLetter = state.userTypedLetter.split('')
+
+      if (userLetter.join() === randomLetter?.join()) {
+        let comparisonWords = []
+        console.log(userLetter.join(''))
+        const index = state.randomWords.indexOf(userLetter.join(''))
+
+        comparisonWords = userLetter.join('')
+        return {
           ...state,
           wordShift: state.wordShift + 1,
-          userTypedLetter: ''
+          userTypedLetter: '',
+          comparisonWords: [...state.comparisonWords, comparisonWords],
         }
-        
       }
-      console.log(state.wordShift);
-      console.log(splitedWord, letter);
-      for (let index = 0; index < state.userTypedLetter.length; index++) {
-        console.log(state.userTypedLetter[index],letter[index]);
-        if(state.userTypedLetter[index] === letter[index]){
-          bool[index] = true
-        }else{
-          bool[index] = false
+
+      for (let index = 0; index <= state.userTypedLetter.length; index++) {
+        if (state.userTypedLetter[index] === ' ') {
+          if (index === 0) {
+            return {
+              ...state,
+              userTypedLetter: '',
+            }
+          }
+          return {
+            ...state,
+            wordShift: state.wordShift + 1,
+            userTypedLetter: '',
+          }
         }
-        
+
+        if (
+          state.userTypedLetter &&
+          state.userTypedLetter[index] === randomLetter[index]
+        ) {
+          wordsInBool[index] = true
+        } else {
+          wordsInBool[index] = false
+        }
       }
-      
-    
+
       return {
         ...state,
-        // userTypedLetter: action.payload
+        correctWordBool: [...wordsInBool],
       }
-      
+
     case constants.SET_API_WORDS:
-      
       return {
         ...state,
-        apiWords: action.payload
+        randomWords: action.payload,
       }
-      
-     
+
+    case 'comparisonWords':
+      for (let index = 0; index < state.randomWords.length; index++) {
+        if (index === state.randomWords.length - 1) {
+        }
+      }
+
+      return {
+        ...state,
+      }
+
     default:
       return state
-      
   }
 }
-
-
-// export const keyboard = (state = initalState, action) => {
-//   switch (action.type) {
-//     case constants.ADD_KEY:
-//       console.log(action);
-//       return {
-//         ...state,
-//         items: action.payload
-//       }
-//     default:
-//       return {
-//         ...state
-//       }
-//   }
-// }
-
-
