@@ -5,19 +5,18 @@ export const fetchWords = () => (dispatch) => {
   axios
     .get('https://random-word-api.herokuapp.com/word?number=10')
     .then(({ data }) => {
-      console.log(data)
       dispatch(setApiWords(data))
     })
 }
 
-export const setApiWords = (word) => {
-  return {
-    type: constants.SET_API_WORDS,
-    payload: word,
-  }
-}
+export const setApiWords = (word) => ({
+  type: constants.SET_API_WORDS,
+  payload: word,
+})
 
-export const fetchKey = (key) => ({
-  type: constants.KEYBOARD_EVENT,
-  payload: key,
+export const keyboardEvent = () => ({ type: constants.KEYBOARD_EVENT })
+
+export const addLetter = (userTypedLetter) => ({
+  type: constants.ADD_LETTER,
+  payload: userTypedLetter,
 })

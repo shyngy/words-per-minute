@@ -1,107 +1,64 @@
+import { constants } from '../constants'
 
-import { constants } from "../constants";
-
-const initalState = {
-  apiWords: [],
+const initialState = {
+  randomWords: [],
   userTypedLetter: '',
-  userLetters: '',
   wordShift: 0,
-  letters: '',
-  correctWordBool: [],
-  wrongWords: []
+  listCorrectWords: [],
 }
 
-
-export const keyboard = (state = initalState, action) => {
-
+export const keyboard = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_LETTER":
+    case constants.ADD_LETTER:
       return {
         ...state,
-        userTypedLetter: action.payload
+        userTypedLetter: action.payload,
       }
 
     case constants.KEYBOARD_EVENT:
+      const wordsInBool = []
+      const randomLetter = state.randomWords[state.wordShift]?.split('')
 
-      const bool = []
-      const letter = state.apiWords[state.wordShift]?.split('')
+      const userLetter = state.userTypedLetter.split('')
 
-      const splitedWord = state.userTypedLetter.split('')
-
-      if (splitedWord.join() === letter?.join()) {
-        console.log(splitedWord);
+      if (userLetter.join() === randomLetter?.join()) {
         return {
           ...state,
           wordShift: state.wordShift + 1,
-          userTypedLetter: ''
+          userTypedLetter: '',
         }
-
       }
-      state.correctWordBool.forEach((item)=>{
-        if(item === false){
-          console.log('word wrong');
-        }
-      })
-
-     
-
 
       for (let index = 0; index < state.userTypedLetter.length; index++) {
         if (state.userTypedLetter[index] === ' ') {
           return {
             ...state,
-            wordShift: state.wordShift + 1,
-            userTypedLetter: ''
+            userTypedLetter: state.userTypedLetter.replace(/\s/g, ''),
           }
         }
-        console.log(state.userTypedLetter[index], letter[index]);
-        if (state.userTypedLetter[index] === letter[index]) {
-          bool[index] = true
+
+        if (
+          state.userTypedLetter &&
+          state.userTypedLetter[index] === randomLetter[index]
+        ) {
+          wordsInBool[index] = true
         } else {
-          bool[index] = false
+          wordsInBool[index] = false
         }
-
       }
-
 
       return {
         ...state,
-        correctWordBool: [...bool]
+        listCorrectWords: [...wordsInBool],
       }
 
     case constants.SET_API_WORDS:
-
       return {
         ...state,
-        apiWords: action.payload
-      }
-
-    case "wrong_word":
-
-      return {
-        ...state
+        randomWords: action.payload,
       }
 
     default:
       return state
-
   }
 }
-
-
-// export const keyboard = (state = initalState, action) => {
-//   switch (action.type) {
-//     case constants.ADD_KEY:
-//       console.log(action);
-//       return {
-//         ...state,
-//         items: action.payload
-//       }
-//     default:
-//       return {
-//         ...state
-//       }
-//   }
-// }
-
-
