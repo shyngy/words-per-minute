@@ -18,8 +18,9 @@ const WordsInput = () => {
     dispatch(keyboardEvent())
   }, [dispatch, userTypedLetter])
   return (
-    <div>
+    <div className="input-container">
       <input
+        className="words-input"
         value={words}
         onChange={(e) => setUserTypedLetter(e.target.value)}
       />
