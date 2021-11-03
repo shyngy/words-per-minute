@@ -10,6 +10,9 @@
   color: red;
   transition: all 0.6;
 }
+.typed-words {
+  color: #eeeeee;
+}
 .random-words {
   list-style: none;
   margin: 0;
@@ -26,10 +29,15 @@
   width: 100vw;
 }
 .words-input {
-  width: 100px;
+  font-size: 20px;
+  width: 50vw;
   height: 20px;
   margin: 0 auto;
   display: block;
+  border: none;
+  border-bottom: 2px solid #61dafb;
+  outline: none;
+  caret-color: aqua;
 }
 .loading-word {
   height: 20px;
@@ -40,6 +48,36 @@
   background-size: 200% 100%;
   animation: 1.5s shine linear infinite;
 }
+
+.keyboard {
+  span {
+    border-radius: 10px;
+    border: 2px solid red;
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    font-size: 15px;
+  }
+}
+.active-button {
+  color: aqua;
+  animation-duration: 0.3s;
+  animation-name: active-word;
+  animation-iteration-count: 1;
+}
+
+@keyframes active-word {
+  20% {
+    color: aqua;
+    background-color: red;
+  }
+  100% {
+    color: black;
+    background-color: transparent;
+  }
+}
+
 @keyframes shine {
   to {
     background-position-x: -200%;

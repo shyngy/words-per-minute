@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.scss'
+import KeyboardSection from './components/KeyboardSection'
 import WordsInput from './components/WordsInput'
 import WordsSection from './components/WordsSection'
 
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <WordsSection />
       <WordsInput />
+      <KeyboardSection />
     </div>
   )
 }

@@ -14,8 +14,11 @@ export const setApiWords = (word) => ({
   payload: word,
 })
 
-export const keyboardEvent = () => ({ type: constants.KEYBOARD_EVENT })
-
+export const wordInputEvent = () => ({ type: constants.WORD_INPUT_EVENT })
+export const keyboardEvent = (symbol) => ({
+  type: constants.KEYBOARD_EVENT,
+  payload: symbol,
+})
 export const addLetter = (userTypedLetter) => ({
   type: constants.ADD_LETTER,
   payload: userTypedLetter,

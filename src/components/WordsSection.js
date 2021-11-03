@@ -3,17 +3,18 @@ import { useSelector } from 'react-redux'
 import classNames from 'classnames'
 import LoadingWords from './LoadingWords'
 const WordsSection = () => {
-  const randomWords = useSelector(({ keyboard }) => keyboard.randomWords)
-  const wordShift = useSelector(({ keyboard }) => keyboard.wordShift)
-  const listCorrectWords = useSelector(
-    ({ keyboard }) => keyboard.listCorrectWords
+  const { randomWords, wordShift, listCorrectWords, typedWord } = useSelector(
+    ({ keyboard }) => keyboard
   )
-  let isWrong = true
-  listCorrectWords.forEach((item) => {
-    if (!item) {
-      isWrong = false
-    }
-  })
+  let [isWrong, setIsWrong] = React.useState(false)
+  React.useEffect(() => {
+    !listCorrectWords.length && setIsWrong(false)
+    listCorrectWords.forEach((item) => {
+      if (!item) return setIsWrong(true)
+      setIsWrong(false)
+    })
+  }, [listCorrectWords])
+
   return (
     <ul className="random-words">
       {!randomWords.length && <LoadingWords arrLength={30} />}
@@ -24,7 +25,8 @@ const WordsSection = () => {
               key={item}
               className={classNames(
                 { 'current-word': index === wordShift },
-                { 'wrong-word': index === wordShift && !isWrong }
+                { 'wrong-word': index === wordShift && isWrong },
+                { 'typed-words': typedWord[index] === item }
               )}
             >
               {item}

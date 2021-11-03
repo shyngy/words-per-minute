@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addLetter,
-  keyboardEvent,
+  wordInputEvent,
   fetchWords,
 } from '../store/actions/keyboardAction'
 const WordsInput = () => {
@@ -15,12 +15,18 @@ const WordsInput = () => {
 
   React.useEffect(() => {
     dispatch(addLetter(userTypedLetter))
-    dispatch(keyboardEvent())
+    dispatch(wordInputEvent())
   }, [dispatch, userTypedLetter])
+
+  const onKey = (e) => {
+    console.log(e)
+  }
+
   return (
     <div className="input-container">
       <input
         className="words-input"
+        onKeyPress={onKey}
         value={words}
         onChange={(e) => setUserTypedLetter(e.target.value)}
       />
