@@ -8,13 +8,8 @@ const WordsSection = () => {
   )
   let [isWrong, setIsWrong] = React.useState(false)
   React.useEffect(() => {
-    !listCorrectWords.length && setIsWrong(false)
-    listCorrectWords.forEach((item) => {
-      if (!item) return setIsWrong(true)
-      setIsWrong(false)
-    })
+    setIsWrong(listCorrectWords.every((e) => e === true))
   }, [listCorrectWords])
-
   return (
     <ul className="random-words">
       {!randomWords.length && <LoadingWords arrLength={30} />}
@@ -25,7 +20,7 @@ const WordsSection = () => {
               key={item}
               className={classNames(
                 { 'current-word': index === wordShift },
-                { 'wrong-word': index === wordShift && isWrong },
+                { 'wrong-word': index === wordShift && !isWrong },
                 { 'typed-words': typedWord[index] === item }
               )}
             >

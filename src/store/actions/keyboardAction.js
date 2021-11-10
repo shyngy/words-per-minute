@@ -3,7 +3,7 @@ import { constants } from '../constants'
 
 export const fetchWords = () => (dispatch) => {
   axios
-    .get('https://random-word-api.herokuapp.com/word?number=31')
+    .get('https://random-word-api.herokuapp.com/word?number=3')
     .then(({ data }) => {
       dispatch(setApiWords(data))
     })

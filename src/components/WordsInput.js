@@ -18,15 +18,19 @@ const WordsInput = () => {
     dispatch(wordInputEvent())
   }, [dispatch, userTypedLetter])
 
-  const onKey = (e) => {
-    console.log(e)
+  const KeyPress = (e) => {
+    console.log('p')
   }
-
+  const keyUp = (e) => {
+    console.log('u')
+  }
+  console.log()
   return (
     <div className="input-container">
       <input
         className="words-input"
-        onKeyPress={onKey}
+        onKeyUp={keyUp}
+        onKeyPress={KeyPress}
         value={words}
         onChange={(e) => setUserTypedLetter(e.target.value)}
       />

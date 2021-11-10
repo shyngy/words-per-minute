@@ -18,6 +18,8 @@ export const keyboard = (state = initialState, action) => {
       }
 
     case constants.WORD_INPUT_EVENT:
+      console.log(state)
+      if (state.typedWord.length === state.randomWords.length) return state
       const wordsInBool = []
       const randomLetter = state.randomWords[state.wordShift]?.split('')
 
