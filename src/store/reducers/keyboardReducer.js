@@ -7,6 +7,7 @@ const initialState = {
   listCorrectWords: [],
   typedWord: [],
   keyboardSymbol: '',
+  pressedKey: '',
 }
 
 export const keyboard = (state = initialState, action) => {
@@ -18,7 +19,6 @@ export const keyboard = (state = initialState, action) => {
       }
 
     case constants.WORD_INPUT_EVENT:
-      console.log(state)
       if (state.typedWord.length === state.randomWords.length) return state
       const wordsInBool = []
       const randomLetter = state.randomWords[state.wordShift]?.split('')
@@ -67,6 +67,12 @@ export const keyboard = (state = initialState, action) => {
       return {
         ...state,
         keyboardSymbol: action.payload,
+      }
+    case 'PRESSED_KEY':
+      console.log(action.payload, 'payload')
+      return {
+        ...state,
+        pressedKey: action.payload,
       }
     default:
       return state

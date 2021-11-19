@@ -5,7 +5,9 @@ import {
   wordInputEvent,
   fetchWords,
 } from '../store/actions/keyboardAction'
+
 const WordsInput = () => {
+  const inputRef = React.useRef()
   const dispatch = useDispatch()
   const [userTypedLetter, setUserTypedLetter] = React.useState('')
   const words = useSelector(({ keyboard }) => keyboard.userTypedLetter)
@@ -18,19 +20,11 @@ const WordsInput = () => {
     dispatch(wordInputEvent())
   }, [dispatch, userTypedLetter])
 
-  const KeyPress = (e) => {
-    console.log('p')
-  }
-  const keyUp = (e) => {
-    console.log('u')
-  }
-  console.log()
   return (
-    <div className="input-container">
+    <div className="input-container" ref={inputRef}>
       <input
+        autoFocus
         className="words-input"
-        onKeyUp={keyUp}
-        onKeyPress={KeyPress}
         value={words}
         onChange={(e) => setUserTypedLetter(e.target.value)}
       />

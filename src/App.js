@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './App.scss'
-import KeyboardSection from './components/KeyboardSection'
+
 import WordsInput from './components/WordsInput'
 import WordsSection from './components/WordsSection'
 
-function App() {
-  return (
-    <div className="App">
-      <WordsSection />
-      <WordsInput />
-      <KeyboardSection />
-    </div>
-  )
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <WordsSection />
+        <WordsInput />
+      </div>
+    )
+  }
 }
 
 export default App

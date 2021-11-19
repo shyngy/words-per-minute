@@ -3,7 +3,7 @@
 }
 
 .current-word {
-  color: #61dafb;
+  color: #0bf116;
   transition-delay: inherit;
 }
 .wrong-word {
@@ -13,15 +13,34 @@
 .typed-words {
   color: #eeeeee;
 }
+.random-words-section {
+  width: 100vw;
+  height: 100px;
+  background-color: #61dafb;
+}
+.words-section {
+  width: 1100px;
+  height: 120px;
+
+  overflow: auto;
+}
 .random-words {
   list-style: none;
-  margin: 0;
-  padding: 40px 5%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  li {
+  margin: 20px auto;
+  padding: 10px;
+  padding-left: 10%;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  min-width: 1100px;
+  width: 1100px;
+  border: 2px solid transparent;
+  background-color: white;
+  border-radius: 10px;
+
+  span {
     padding: 5px;
+
+    display: inline-block;
   }
 }
 
@@ -29,12 +48,13 @@
   width: 100vw;
 }
 .words-input {
-  font-size: 20px;
-  width: 50vw;
-  height: 20px;
+  font-size: 25px;
+  width: 70vw;
+  height: 40px;
   margin: 0 auto;
   display: block;
   border: none;
+
   border-bottom: 2px solid #61dafb;
   outline: none;
   caret-color: aqua;
@@ -43,6 +63,7 @@
   height: 20px;
   background: #eeeeee;
   border-radius: 30px;
+  display: inline-block;
   margin: 5px;
   background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
   background-size: 200% 100%;
@@ -71,6 +92,17 @@
   20% {
     color: aqua;
     background-color: red;
+  }
+  100% {
+    color: black;
+    background-color: transparent;
+  }
+}
+
+@keyframes post-active-word {
+  20% {
+    color: aqua;
+    background-color: saddlebrown;
   }
   100% {
     color: black;
