@@ -4,13 +4,14 @@ const initialState = {
   randomWords: [],
   userTypedLetter: '',
   wordShift: 0,
-  listCorrectWords: [],
+  listCorrectLetter: [],
   typedWord: [],
-  keyboardSymbol: '',
-  pressedKey: '',
+  activeTimeOut: false,
+  time: 60,
 }
 
 export const keyboard = (state = initialState, action) => {
+  console.log(state)
   switch (action.type) {
     case constants.ADD_LETTER:
       return {
@@ -52,10 +53,10 @@ export const keyboard = (state = initialState, action) => {
           wordsInBool[index] = false
         }
       }
-
       return {
         ...state,
-        listCorrectWords: [...wordsInBool],
+        listCorrectLetter: [...wordsInBool],
+        activeTimeOut: true,
       }
 
     case constants.SET_API_WORDS:
@@ -63,16 +64,11 @@ export const keyboard = (state = initialState, action) => {
         ...state,
         randomWords: action.payload,
       }
-    case constants.KEYBOARD_EVENT:
+
+    case 'TimeOutEvent':
       return {
         ...state,
-        keyboardSymbol: action.payload,
-      }
-    case 'PRESSED_KEY':
-      console.log(action.payload, 'payload')
-      return {
-        ...state,
-        pressedKey: action.payload,
+        time: state.time - 1,
       }
     default:
       return state

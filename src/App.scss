@@ -2,6 +2,30 @@
   width: 100vw;
 }
 
+.navbar {
+  max-width: 1200px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wpm {
+  position: absolute;
+  top: 21px;
+  margin-left: 10px;
+  letter-spacing: 5px;
+}
+.time {
+}
+.navbar-logo {
+  width: 50px;
+  height: 50px;
+}
+
 .current-word {
   color: #0bf116;
   transition-delay: inherit;
@@ -48,16 +72,15 @@
   width: 100vw;
 }
 .words-input {
-  font-size: 25px;
-  width: 70vw;
+  font-size: 20px;
+  width: 1100px;
   height: 40px;
   margin: 0 auto;
   display: block;
   border: none;
-
-  border-bottom: 2px solid #61dafb;
+  font-family: inherit;
+  border-bottom: 2px solid #000000;
   outline: none;
-  caret-color: aqua;
 }
 .loading-word {
   height: 20px;

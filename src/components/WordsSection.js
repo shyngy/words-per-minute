@@ -4,15 +4,14 @@ import classNames from 'classnames'
 import LoadingWords from './LoadingWords'
 const WordsSection = () => {
   const scrollRef = React.useRef(null)
-  const { randomWords, wordShift, listCorrectWords, typedWord } = useSelector(
+  const { randomWords, wordShift, listCorrectLetter, typedWord } = useSelector(
     ({ keyboard }) => keyboard
   )
   let [isWrong, setIsWrong] = React.useState(false)
   React.useEffect(() => {
-    setIsWrong(listCorrectWords.every((e) => e === true))
-  }, [listCorrectWords])
+    setIsWrong(listCorrectLetter.every((e) => e === true))
+  }, [listCorrectLetter])
   React.useEffect(() => {
-    console.log(wordShift)
     if (wordShift % 8 === 0) {
       scrollRef.current.scrollBy(0, 40)
     }

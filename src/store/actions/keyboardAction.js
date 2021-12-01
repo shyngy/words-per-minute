@@ -3,7 +3,7 @@ import { constants } from '../constants'
 
 export const fetchWords = () => (dispatch) => {
   axios
-    .get('https://random-word-api.herokuapp.com/word?number=48')
+    .get('https://random-word-api.herokuapp.com/word?number=380')
     .then(({ data }) => {
       dispatch(setApiWords(data))
     })
@@ -23,3 +23,12 @@ export const addLetter = (userTypedLetter) => ({
   type: constants.ADD_LETTER,
   payload: userTypedLetter,
 })
+export const timeOutEvent = () => ({
+  type: 'TimeOutEvent',
+})
+
+export const timeOut = () => (dispatch) => {
+  setTimeout(() => {
+    dispatch(timeOutEvent())
+  }, 1000)
+}
