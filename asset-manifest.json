@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/words-per-minute/static/css/main.dd577832.chunk.css",
+    "main.js": "/words-per-minute/static/js/main.7a3a6293.chunk.js",
+    "main.js.map": "/words-per-minute/static/js/main.7a3a6293.chunk.js.map",
+    "runtime-main.js": "/words-per-minute/static/js/runtime-main.bb465e58.js",
+    "runtime-main.js.map": "/words-per-minute/static/js/runtime-main.bb465e58.js.map",
+    "static/js/2.ff6346df.chunk.js": "/words-per-minute/static/js/2.ff6346df.chunk.js",
+    "static/js/2.ff6346df.chunk.js.map": "/words-per-minute/static/js/2.ff6346df.chunk.js.map",
+    "static/js/3.67a55a45.chunk.js": "/words-per-minute/static/js/3.67a55a45.chunk.js",
+    "static/js/3.67a55a45.chunk.js.map": "/words-per-minute/static/js/3.67a55a45.chunk.js.map",
+    "index.html": "/words-per-minute/index.html",
+    "static/css/main.dd577832.chunk.css.map": "/words-per-minute/static/css/main.dd577832.chunk.css.map",
+    "static/js/2.ff6346df.chunk.js.LICENSE.txt": "/words-per-minute/static/js/2.ff6346df.chunk.js.LICENSE.txt",
+    "static/media/keyboard.66ffea3e.svg": "/words-per-minute/static/media/keyboard.66ffea3e.svg",
+    "static/media/reload.94fc110c.svg": "/words-per-minute/static/media/reload.94fc110c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bb465e58.js",
+    "static/js/2.ff6346df.chunk.js",
+    "static/css/main.dd577832.chunk.css",
+    "static/js/main.7a3a6293.chunk.js"
+  ]
+}
