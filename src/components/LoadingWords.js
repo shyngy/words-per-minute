@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 const LoadingWords = ({ arrLength }) => {
   return (
@@ -6,13 +6,13 @@ const LoadingWords = ({ arrLength }) => {
       {Array(arrLength)
         .fill(null)
         .map((_, index) => (
-          <Fragment key={index}>
+          <React.Fragment key={index}>
             <div
               className="loading-word"
               style={{ width: `${randomInteger(60, 110)}px` }}
             ></div>
             {(index + 1) % 10 === 0 && <br />}
-          </Fragment>
+          </React.Fragment>
         ))}
     </>
   )

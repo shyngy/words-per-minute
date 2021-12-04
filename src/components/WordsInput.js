@@ -1,16 +1,19 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import ReloadImg from '../assets/images/reload.svg'
+import { useDispatch } from 'react-redux'
 import {
   addLetter,
   wordInputEvent,
   fetchWords,
+  changeTime,
+  restartApp,
 } from '../store/actions/keyboardAction'
 
-const WordsInput = () => {
+const WordsInput = ({ words }) => {
   const inputRef = React.useRef()
   const dispatch = useDispatch()
   const [userTypedLetter, setUserTypedLetter] = React.useState('')
-  const words = useSelector(({ keyboard }) => keyboard.userTypedLetter)
+
   React.useEffect(() => {
     dispatch(fetchWords())
   }, [dispatch])
@@ -19,7 +22,11 @@ const WordsInput = () => {
     dispatch(addLetter(userTypedLetter))
     dispatch(wordInputEvent())
   }, [dispatch, userTypedLetter])
-
+  const restart = () => {
+    dispatch(restartApp())
+    dispatch(fetchWords())
+    dispatch(changeTime(60))
+  }
   return (
     <div className="input-container" ref={inputRef}>
       <input
@@ -28,6 +35,10 @@ const WordsInput = () => {
         value={words}
         onChange={(e) => setUserTypedLetter(e.target.value)}
       />
+
+      <button className="refresh-button" onClick={restart}>
+        <img src={ReloadImg} alt="Reload" />
+      </button>
     </div>
   )
 }

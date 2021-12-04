@@ -11,7 +11,6 @@ const initialState = {
 }
 
 export const keyboard = (state = initialState, action) => {
-  console.log(state)
   switch (action.type) {
     case constants.ADD_LETTER:
       return {
@@ -21,6 +20,9 @@ export const keyboard = (state = initialState, action) => {
 
     case constants.WORD_INPUT_EVENT:
       if (state.typedWord.length === state.randomWords.length) return state
+
+      if (state.time === 0) return state
+
       const wordsInBool = []
       const randomLetter = state.randomWords[state.wordShift]?.split('')
 
@@ -65,10 +67,20 @@ export const keyboard = (state = initialState, action) => {
         randomWords: action.payload,
       }
 
-    case 'TimeOutEvent':
+    case constants.TIME_OUT_EVENT:
+      if (!state.randomWords.length) {
+        return state
+      }
       return {
         ...state,
         time: state.time - 1,
+      }
+    case constants.RE_START:
+      return initialState
+    case constants.CHANGE_TIME:
+      return {
+        ...state,
+        time: action.payload,
       }
     default:
       return state

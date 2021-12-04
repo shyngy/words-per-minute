@@ -24,7 +24,7 @@ export const addLetter = (userTypedLetter) => ({
   payload: userTypedLetter,
 })
 export const timeOutEvent = () => ({
-  type: 'TimeOutEvent',
+  type: constants.TIME_OUT_EVENT,
 })
 
 export const timeOut = () => (dispatch) => {
@@ -32,3 +32,8 @@ export const timeOut = () => (dispatch) => {
     dispatch(timeOutEvent())
   }, 1000)
 }
+export const restartApp = () => ({ type: constants.RE_START })
+export const changeTime = (time) => ({
+  type: constants.CHANGE_TIME,
+  payload: time,
+})

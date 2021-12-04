@@ -1,12 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import classNames from 'classnames'
 import LoadingWords from './LoadingWords'
-const WordsSection = () => {
+
+const WordsSection = ({
+  randomWords,
+  wordShift,
+  listCorrectLetter,
+  typedWord,
+}) => {
   const scrollRef = React.useRef(null)
-  const { randomWords, wordShift, listCorrectLetter, typedWord } = useSelector(
-    ({ keyboard }) => keyboard
-  )
+
   let [isWrong, setIsWrong] = React.useState(false)
   React.useEffect(() => {
     setIsWrong(listCorrectLetter.every((e) => e === true))

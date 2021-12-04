@@ -5,10 +5,10 @@ import { timeOut } from '../store/actions/keyboardAction'
 const TimeOut = () => {
   const dispatch = useDispatch()
 
-  const active = useSelector((state) => state.keyboard.activeTimeOut)
-  const time = useSelector((state) => state.keyboard.time)
+  const active = useSelector(({ keyboard }) => keyboard.activeTimeOut)
+  const time = useSelector(({ keyboard }) => keyboard.time)
   React.useEffect(() => {
-    if (active && time > 0) {
+    if (active === true && time > 0) {
       dispatch(timeOut())
     }
   }, [time, active, dispatch])
